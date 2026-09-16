@@ -109,5 +109,38 @@ public final class CourseToolkit {
 
     }
 
+    public static void main(String[] args) {
+        // CLI для prime, palindrome, average.
 
+        if (args.length == 0) {
+            System.out.println("Command is required");
+            return;
+        }
+
+        String name = args[0];
+
+        if (name.equals("prime")) {
+
+            int number = Integer.parseInt(args[1]);
+            System.out.println(CourseToolkit.isPrime(number));
+        }
+
+        else if (name.equals("palindrome")) {
+
+            String word = args[1];
+            System.out.println(CourseToolkit.isPalindrome(word));            
+        }
+
+        else if (name.equals("average")) {
+
+            int[] values = new int[args.length - 1];
+            for (int i = 1; i < args.length; i++) {
+                values[i - 1] = Integer.parseInt(args[i]);
+            }
+            double result = CourseToolkit.average(values);
+            System.out.println(result);
+
+        }
+        
+    }
 }

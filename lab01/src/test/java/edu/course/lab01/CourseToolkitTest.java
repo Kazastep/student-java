@@ -2,6 +2,9 @@ package edu.course.lab01;
 
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -38,49 +41,64 @@ class CourseToolkitTest {
         assertTrue(result);
     }
 
-    // Тесты для isPrime() с составными числами №1
-    @Test void returnsFalseForCompositeNumbers() {
+    // // Тесты для isPrime() с составными числами №1
+    // @Test void returnsFalseForCompositeNumbers() {
 
-        boolean result = CourseToolkit.isPrime(4);
-        assertFalse(result);
+    //     boolean result = CourseToolkit.isPrime(4);
+    //     assertFalse(result);
 
-        result = CourseToolkit.isPrime(36);
-        assertFalse(result);
-    }
+    //     result = CourseToolkit.isPrime(36);
+    //     assertFalse(result);
+    // }
 
-    // Тесты для isPrime() с НЕ составными числами №2
-    @Test void returnsTrueForPrime() {
+    // // Тесты для isPrime() с НЕ составными числами №2
+    // @Test void returnsTrueForPrime() {
 
-        boolean result = CourseToolkit.isPrime(3);
-        assertTrue(result);
+    //     boolean result = CourseToolkit.isPrime(3);
+    //     assertTrue(result);
 
-        result = CourseToolkit.isPrime(17);
-        assertTrue(result);
+    //     result = CourseToolkit.isPrime(17);
+    //     assertTrue(result);
 
-    }
+    // }
 
-    // Тест для isPrime(): число меньше 2 должно вернуть false №3
-    @Test
-    void returnsFalseForNumberLessThanTwo() {
-        assertFalse(CourseToolkit.isPrime(1));
-    }
+    // // Тест для isPrime(): число меньше 2 должно вернуть false №3
+    // @Test
+    // void returnsFalseForNumberLessThanTwo() {
+    //     assertFalse(CourseToolkit.isPrime(1));
+    // }
 
-    // Тест для isPrime(): число 2 является простым №4
-    @Test
-    void returnsTrueForTwo() {
-        assertTrue(CourseToolkit.isPrime(2));
-    }
+    // // Тест для isPrime(): число 2 является простым №4
+    // @Test
+    // void returnsTrueForTwo() {
+    //     assertTrue(CourseToolkit.isPrime(2));
+    // }
 
-    // Тест для isPrime(): квадрат простого числа не является простым №5
-    @Test
-    void returnsFalseForPrimeSquare() {
-        assertFalse(CourseToolkit.isPrime(49));
-    }
+    // // Тест для isPrime(): квадрат простого числа не является простым №5
+    // @Test
+    // void returnsFalseForPrimeSquare() {
+    //     assertFalse(CourseToolkit.isPrime(49));
+    // }
 
-    // Тест для isPrime(): отрицательное число не является простым №6
-    @Test
-    void returnsFalseForNegativeNumber() {
-        assertFalse(CourseToolkit.isPrime(-5));
+    // // Тест для isPrime(): отрицательное число не является простым №6
+    // @Test
+    // void returnsFalseForNegativeNumber() {
+    //     assertFalse(CourseToolkit.isPrime(-5));
+    // }
+
+    // Переписанные тесты для isPrime как ParameterizedTest.
+    @ParameterizedTest 
+    @CsvSource ({
+        "2, true",
+        "3, true",
+        "4, false",
+        "17, true",
+        "49, false",
+        "1, false",
+        "-5, false"
+    })
+    void checksPrimeNumbers(int number, boolean expected) {
+        assertEquals(expected, CourseToolkit.isPrime(number));
     }
 
     // Тест для isPalindrome(): учитывая регистр и пробелы, слово палиндромно. №1
@@ -105,15 +123,9 @@ class CourseToolkitTest {
         assertThrows(
         IllegalArgumentException.class,
         () -> CourseToolkit.isPalindrome(null)
-    );
+        );
     }
 
-    // Тест для average()
-    @Test 
-    void returnEqualsForAverage() {
-        assertEquals(2.0, CourseToolkit.average(new int[]{1, 2, 3}));
-        assertEquals(1.5, CourseToolkit.average(new int[]{1, 2}));
-    }
 
     // Тест для average(): корректно считает среднее арифметическое
     @Test 
