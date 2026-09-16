@@ -2,6 +2,7 @@ package edu.course.lab01;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -114,9 +115,37 @@ class CourseToolkitTest {
         assertEquals(1.5, CourseToolkit.average(new int[]{1, 2}));
     }
 
+    // Тест для average(): корректно считает среднее арифметическое
+    @Test 
+    void returnsCorrectAverage() {
+        assertEquals(2.0, CourseToolkit.average(new int[]{1, 2, 3}));
+        assertEquals(1.5, CourseToolkit.average(new int[]{1, 2}));
+    }
+
+    // Тест для average(): массив с одним элементом
     @Test
-    void returnTrueForAverage() {
-        assertTrue(CourseToolkit.average(null));
+    void returnsAverageForSingleElement() {
+        assertEquals(5.0, CourseToolkit.average(new int[]{5}));
+    }
+
+    // Тест для average(): null должен выбрасывать IllegalArgumentException
+    @Test
+    void throwsIllegalArgumentExceptionForNull() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> CourseToolkit.average(null)
+        );
+    }
+
+    // Тест для average(): исходный массив не изменяется
+    @Test
+    void doesNotModifyArray() {
+        int[] values = {1, 2, 3};
+        int[] original = {1, 2, 3};
+
+        CourseToolkit.average(values);
+
+        assertArrayEquals(original, values);
     }
 
 }

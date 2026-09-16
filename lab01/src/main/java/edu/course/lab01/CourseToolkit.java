@@ -74,4 +74,40 @@ public final class CourseToolkit {
         return answer;
 
     }
+
+    public static int min(int[] values) {
+        // Метод получает массив и возвращает его минимальное значение
+
+        if (values == null || values.length == 0) {
+            throw new IllegalArgumentException();
+        }
+
+        int minValue = values[0];
+        for (int value: values) {
+            if (value < minValue) {
+                minValue = value;
+            }
+        }
+        return minValue;
+
+    }
+
+    public static int max(int[] values) {
+        // Метод получает массив и возвращает его максимальное значение
+
+        if (values == null || values.length == 0) {
+            throw new IllegalArgumentException();
+        }
+
+        int maxValue = values[0];
+        for (int value: values) {
+            if (value > maxValue) {
+                maxValue = value;
+            }
+        }
+        return maxValue;
+
+    }
+
+
 }
