@@ -2,6 +2,7 @@ package edu.course.lab02;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,7 +38,7 @@ public class DataSampleTest {
         () -> new DataSample("", "programmer",new double[]{1.2, 3.4}));
     }
 
-    // Тест проверяет отработку ошибки null параметра в features
+    // // Тест проверяет ошибку при передаче пустого массива features
     @Test
     public void throwsExceptionForNullFeatures() {
         assertThrows(IllegalArgumentException.class, 
@@ -83,7 +84,7 @@ public class DataSampleTest {
         () -> data.changeStatus(null));
     }
 
-    // Тест проверяет что ставтус изменился
+    // Тест проверяет что статус изменился
     @Test
     public void changesStatus() {
         DataSample data = new DataSample(
@@ -119,5 +120,17 @@ public class DataSampleTest {
             "first", "programmer",new double[]{2.0,3.0}
         );
         assertFalse(data.isReady());
+    }
+
+    // Тест проверяет грамотную инициализацию
+    @Test 
+    public void createsValidDataSample() {
+            DataSample data = new DataSample(
+            "first", "programmer",new double[]{2.0,3.0}
+        );
+        assertEquals("first", data.getId());
+        assertEquals("programmer", data.getLabel());
+        assertEquals(SampleStatus.NEW, data.getStatus());
+        assertArrayEquals(new double[]{2.0, 3.0}, data.getFeatures());
     }
 }
