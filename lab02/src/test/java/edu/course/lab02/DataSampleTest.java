@@ -125,12 +125,38 @@ public class DataSampleTest {
     // Тест проверяет грамотную инициализацию
     @Test 
     public void createsValidDataSample() {
-            DataSample data = new DataSample(
+        DataSample data = new DataSample(
             "first", "programmer",new double[]{2.0,3.0}
         );
         assertEquals("first", data.getId());
         assertEquals("programmer", data.getLabel());
         assertEquals(SampleStatus.NEW, data.getStatus());
         assertArrayEquals(new double[]{2.0, 3.0}, data.getFeatures());
+    }
+
+    // Тест проверяет нормализацию массива
+    @Test 
+    public void normalizedFeaturesTest() {
+        DataSample data = new DataSample(
+            "first", "programmer",new double[]{10.0, 20.0, 30.0}
+        );
+        assertArrayEquals(new double[]{0.0,0.5,1.0}, data.normalizedFeatures());
+    }
+
+    // Тест проверяет сохранность исходного массива после нормализации
+    @Test
+    public void normalizationDoesNotModifyOriginal() {
+        DataSample data = new DataSample(
+            "first",
+            "programmer",
+            new double[]{10.0, 20.0, 30.0}
+        );
+
+        data.normalizedFeatures();
+
+        assertArrayEquals(
+            new double[]{10.0, 20.0, 30.0},
+            data.getFeatures()
+        );
     }
 }

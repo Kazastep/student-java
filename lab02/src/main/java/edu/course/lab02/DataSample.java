@@ -1,7 +1,7 @@
 package edu.course.lab02;
 
 public class DataSample {
-    private String id;
+    private SampleId id;
     private String label;
     private SampleStatus status;
     private double[] features;
@@ -20,14 +20,14 @@ public class DataSample {
             throw new IllegalArgumentException();
         }
 
-        this.id = id;
+        this.id = new SampleId(id);
         this.label = label;
         this.status = SampleStatus.NEW;
         this.features = features.clone();
     }
 
     public String getId() {
-        return this.id;
+        return this.id.value();
     }
 
     public SampleStatus getStatus() {
@@ -40,6 +40,29 @@ public class DataSample {
 
     public double[] getFeatures() {
         return this.features.clone();
+    }
+
+    public double[] normalizedFeatures() {
+        double[] featuresClone = features.clone();
+        double min = features[0];
+        double max = features[0];
+
+        for(int i=1; i < features.length; i++) {
+            if (min > features[i]) {
+                min = features[i];
+            }
+            if (max < features[i]) {
+                max = features[i];
+            }
+        }
+        if (max == min) {
+            return new double[features.length];
+        }
+        for (int i=0; i < features.length; i++) {
+            double value = (features[i]-min) / (max - min);
+            featuresClone[i] = value;
+        }
+        return featuresClone;
     }
 
     public void changeStatus(SampleStatus status) {
