@@ -11,10 +11,12 @@ public class DataSample {
         if (label == null || label.isEmpty()){
             throw new IllegalArgumentException();
         }
+
         // Проврка id
-        if (id == null || id.isEmpty()){
-            throw new IllegalArgumentException();
-        }
+        // if (id == null || id.isEmpty()){
+        //     throw new IllegalArgumentException();
+        // }
+
         // Проверка массива
         if (features == null || features.length == 0) {
             throw new IllegalArgumentException();
@@ -83,5 +85,10 @@ public class DataSample {
 
     public boolean isReady() {
         return this.status == SampleStatus.READY;
+    }
+
+    public static void main(String[] args) {
+        double x = 0.0 / 0.0;
+        System.out.println(x);
     }
 }
