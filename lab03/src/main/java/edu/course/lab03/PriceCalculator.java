@@ -4,7 +4,7 @@ public class PriceCalculator {
 
     private DiscountPolicy policy;
 
-    public PriceCalculator(DiscountPolicy policy, double discount){
+    public PriceCalculator(DiscountPolicy policy){
         this.policy = policy;
     }
 
