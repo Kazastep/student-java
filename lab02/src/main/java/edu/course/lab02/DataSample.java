@@ -86,9 +86,4 @@ public class DataSample {
     public boolean isReady() {
         return this.status == SampleStatus.READY;
     }
-
-    public static void main(String[] args) {
-        double x = 0.0 / 0.0;
-        System.out.println(x);
-    }
 }
