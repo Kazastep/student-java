@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Files;
 import java.nio.charset.StandardCharsets;
 import java.io.BufferedReader;
-// import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,7 @@ class FilePreparationTest {
 
         List <String> arr = List.of("10","bad","20");
 
-        // Path file = Files.write(path, arr, StandardCharsets.UTF_8);
+        Files.write(path, arr, StandardCharsets.UTF_8);
 
         List<String> lines = Files.readAllLines(
                             path,

@@ -89,8 +89,8 @@ public final class SampleFileLoader {
                 } catch (IllegalArgumentException e) {
                     errors.add(new ValidationError(
                         i + 1, 
-                        "SampleStatus", 
-                        "Uncorrect status:" + fields[4]));
+                        "status",
+                        "Invalid status: " + fields[4]));
                         continue;
                 }
             DataSample sample = new DataSample(
