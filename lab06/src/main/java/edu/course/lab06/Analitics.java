@@ -43,17 +43,9 @@ public class Analitics {
 
     public List<DataSample> sortedSamples() {
         List<DataSample> sorted = new ArrayList<>(samples);
-
-        Comparator<DataSample> comparator = (a, b) -> {
-            return Integer.compare(
-                a.getFeatureCount(),
-                b.getFeatureCount()
-            );
-        };
-        if(sorted.sort(comparator) == 0){
-            sorted.sort(comparator);
-        }
-
+        
+        sorted.sort(Comparator.comparingInt(DataSample::getFeatureCount)
+          .thenComparing(DataSample::getId));
         return sorted;
     }
 
