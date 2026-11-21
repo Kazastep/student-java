@@ -200,7 +200,7 @@ class SampleFileLoaderTest {
     @Test
     void testZeroFeatureCount() throws IOException {
         Path path = createFile(
-                HEADER,
+                HEADER, 
                 "S-101;cat;camera-1;0;READY"
         );
 
